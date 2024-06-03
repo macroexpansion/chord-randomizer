@@ -3,15 +3,16 @@ use std::{thread, time};
 
 fn main() {
     loop {
-        let mut chords = [
+        let chords = [
             "C", "Cm", "C#/Db", "C#m/Dbm", "D", "Dm", "D#/Eb", "D#m/Ebm", "E", "Em", "F", "Fm",
             "F#/Gb", "F#m/Gbm", "G", "Gm", "G#/Ab", "G#m/Abm", "A", "Am", "A#/Bb", "A#m/Bbm", "B",
             "Bm",
         ];
-        chords.shuffle(&mut thread_rng());
-        for chord in chords {
-            println!("{}", chord);
-            thread::sleep(time::Duration::from_secs(5));
+        let mut choices: Vec<_> = (0..chords.len()).collect();
+        choices.shuffle(&mut thread_rng());
+        for choice in choices {
+            println!("{}", chords[choice]);
+            thread::sleep(time::Duration::from_secs(8));
         }
     }
 }
